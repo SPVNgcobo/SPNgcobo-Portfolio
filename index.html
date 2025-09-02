@@ -1,123 +1,410 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snethemba Ngcobo | Developer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snethemba Promise Ngcobo | Portfolio</title>
+  <meta name="description" content="Snethemba Promise Ngcobo — Computer Systems Engineering graduate and Full‑Stack/Web Developer. Projects, skills, certifications, and contact." />
+  <meta property="og:title" content="Snethemba Promise Ngcobo | Portfolio" />
+  <meta property="og:description" content="Computer Systems Engineering graduate & Full‑Stack/Web Developer. Explore projects, skills, and contact." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#00897b" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1e1e24;
+      --muted: #666;
+      --primary: #00897b; /* teal */
+      --accent: #ff9800;  /* amber */
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    :root.dark {
+      --bg: #0f1115;
+      --card: #141821;
+      --text: #e9eef6;
+      --muted: #a5b0c3;
+      --primary: #32bfae;
+      --accent: #ffc46b;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; background: var(--bg); color: var(--text); }/* ===== Hero ===== */
+.hero {
+  position: relative; overflow: hidden; min-height: 86vh; display: grid; place-items: center; text-align: center; padding: 4rem 1.25rem;
+}
+#particles { position: absolute; inset: 0; z-index: 0; }
+.hero-inner { position: relative; z-index: 1; max-width: 1000px; }
+.title { font-size: clamp(2rem, 6vw, 3.5rem); margin: 0 0 .5rem; letter-spacing: 0.4px; }
+.typing { display: inline-block; border-right: 2px solid currentColor; padding-right: .15rem; min-height: 1.5rem; }
+.subtitle { color: var(--muted); margin: .5rem 0 1.25rem; font-size: clamp(1rem, 2.5vw, 1.15rem); }
+.cta { display: inline-flex; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+.btn { appearance: none; border: none; cursor: pointer; text-decoration: none; padding: .85rem 1.15rem; border-radius: 999px; font-weight: 700; box-shadow: var(--shadow); transition: transform .15s ease, filter .2s ease; }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.03); }
+.btn-primary { background: var(--primary); color: white; }
+.btn-ghost { background: var(--card); color: var(--text); border: 1px solid rgba(0,0,0,0.05); }
+
+/* Dark mode toggle */
+.toolbar { position: fixed; top: 14px; right: 14px; z-index: 5; display: flex; gap: 8px; }
+.icon-btn { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--card); color: var(--text); box-shadow: var(--shadow); cursor: pointer; border: none; }
+
+/* ===== Nav ===== */
+.nav { position: sticky; top: 0; z-index: 4; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+:root.dark .nav { background: rgba(20,24,33,0.6); border-color: rgba(255,255,255,0.08); }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: .6rem 1rem; }
+.brand { font-weight: 800; letter-spacing: .5px; }
+.links { display: flex; gap: 1rem; }
+.links a { color: var(--text); text-decoration: none; font-weight: 600; padding: .5rem .75rem; border-radius: 8px; }
+.links a:hover { background: var(--card); }
+
+/* ===== Sections ===== */
+section { padding: 4rem 1rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-title { font-size: clamp(1.4rem, 2.5vw, 2rem); margin: 0 0 1rem; }
+.section-sub { color: var(--muted); margin: 0 0 2rem; }
+.grid { display: grid; gap: 1.25rem; }
+
+/* ===== Projects with filters ===== */
+.filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.chip { padding: .5rem .9rem; border-radius: 999px; border: 1px solid rgba(0,0,0,.06); background: var(--card); cursor: pointer; font-weight: 600; }
+.chip.active { background: var(--primary); color: white; border-color: transparent; }
+.projects { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card { background: var(--card); border-radius: 16px; padding: 1rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: .5rem; animation: raise .5s ease both; }
+.card h3 { margin: .25rem 0; font-size: 1.05rem; }
+.card p { color: var(--muted); margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .2rem; }
+.tag { background: rgba(0,0,0,.06); padding: .25rem .5rem; border-radius: 6px; font-size: .8rem; }
+:root.dark .tag { background: rgba(255,255,255,.08); }
+.card .actions { margin-top: auto; display: flex; gap: .5rem; }
+
+@keyframes raise { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* ===== Skills ===== */
+.skills { display: flex; flex-wrap: wrap; gap: .6rem; }
+.skill { background: var(--card); border: 1px solid rgba(0,0,0,0.06); padding: .6rem .9rem; border-radius: 999px; font-weight: 700; box-shadow: var(--shadow); }
+
+/* ===== Timeline ===== */
+.timeline { border-left: 3px solid var(--primary); padding-left: 1rem; }
+.t-item { margin: 0 0 1.25rem; }
+.t-item h4 { margin: 0; }
+.t-item .meta { color: var(--muted); font-size: .9rem; margin-bottom: .35rem; }
+
+/* ===== Certificates ===== */
+.certs { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.cert { background: var(--card); padding: 1rem; border-radius: 14px; box-shadow: var(--shadow); }
+.cert .issuer { color: var(--muted); font-size: .9rem; }
+
+/* ===== Testimonials (Carousel) ===== */
+.carousel { position: relative; overflow: hidden; background: var(--card); border-radius: 16px; box-shadow: var(--shadow); }
+.carousel-track { display: flex; transition: transform .5s ease; }
+.quote { flex: 0 0 100%; padding: 1.75rem; color: var(--text); }
+.quote p { font-size: 1.05rem; }
+.dots { display: flex; gap: .5rem; justify-content: center; padding: .75rem; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(0,0,0,.2); cursor: pointer; }
+.dot.active { background: var(--primary); }
+
+/* ===== Stats Counter ===== */
+.stats { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.stat { background: var(--card); padding: 1.25rem; border-radius: 14px; text-align: center; box-shadow: var(--shadow); }
+.stat .num { font-size: 2rem; font-weight: 800; }
+.stat .lbl { color: var(--muted); }
+
+/* ===== Contact ===== */
+form { display: grid; gap: .75rem; }
+input, textarea { width: 100%; padding: .85rem 1rem; border: 1px solid rgba(0,0,0,0.08); background: var(--card); color: var(--text); border-radius: 10px; }
+button[type=submit] { justify-self: start; }
+
+/* Floating Contact */
+.float-contact { position: fixed; bottom: 20px; right: 20px; z-index: 5; }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+  </style>
 </head>
 <body>
-    <header>
-        <div class="hero-content">
-            <h1>Snethemba Ngcobo</h1>
-            <p class="tagline">Engineer. Founder. Developer.</p>
-            <div class="skill-badges-container">
-                </div>
-            <div class="hero-buttons">
-                <a href="#projects" class="button">View My Work</a>
-                <a href="Snethemba_Ngcobo_Resume.pdf" class="button" target="_blank">Download Resume</a>
-            </div>
+  <!-- Toolbar -->
+  <div class="toolbar" aria-label="quick actions">
+    <button class="icon-btn" id="themeToggle" aria-label="toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+    <a class="icon-btn" href="#contact" aria-label="jump to contact"><i class="fa-solid fa-paper-plane"></i></a>
+  </div>  <!-- Hero with particles -->  <header class="hero" id="home" role="banner" aria-label="intro section">
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <h1 class="title">Snethemba Promise Ngcobo</h1>
+      <p class="subtitle"><span id="typing" class="typing"></span></p>
+      <div class="cta">
+        <a class="btn btn-primary" href="Snethemba_Ngcobo_CV.pdf" download><i class="fa-regular fa-file-lines"></i>&nbsp; Download CV (PDF)</a>
+        <a class="btn btn-ghost" href="#projects"><i class="fa-solid fa-diagram-project"></i>&nbsp; View Projects</a>
+      </div>
+    </div>
+  </header>  <!-- Nav -->  <nav class="nav" role="navigation" aria-label="main navigation">
+    <div class="nav-inner">
+      <div class="brand">spngcobo</div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certificates</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>  <!-- About -->  <section id="about" class="reveal">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-sub">Computer Systems Engineering graduate & Full‑Stack/Web Developer focused on building fast, accessible, and reliable software. Hands-on experience across networking, automation, and web apps. Actively seeking entry-level, internship, learnership, and graduate programme opportunities.</p>
+      <div class="stats grid">
+        <div class="stat"><div class="num" data-count="15">0</div><div class="lbl">Projects</div></div>
+        <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">Core Languages</div></div>
+        <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">Industry Placements</div></div>
+        <div class="stat"><div class="num" data-count="1">0</div><div class="lbl">Diploma Completed*</div></div>
+      </div>
+      <p style="color: var(--muted); margin-top: .5rem; font-size:.9rem;">*Formal diploma awarded 01 Mar 2025 (per Completion Letter, June 2025).</p>
+    </div>
+  </section>  <!-- Projects with filters -->  <section id="projects" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-sub">Filter by type to explore work samples.</p>
+      <div class="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="frontend">Frontend</button>
+        <button class="chip" data-filter="backend">Backend</button>
+        <button class="chip" data-filter="networking">Networking</button>
+        <button class="chip" data-filter="assistive">Assistive Tech</button>
+      </div>
+      <div class="grid projects" id="projectGrid">
+        <article class="card" data-tags="frontend backend">
+          <h3><i class="fa-solid fa-cart-shopping"></i> E‑commerce Website</h3>
+          <p>Responsive store with product listings, cart logic, and basic checkout flow.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="#" target="_blank"><i class="fa-brands fa-github"></i>&nbsp; Code</a>
+            <a class="btn btn-primary" href="#" target="_blank"><i class="fa-solid fa-up-right-from-square"></i>&nbsp; Demo</a>
+          </div>
+        </article>
+        <article class="card" data-tags="assistive frontend backend">
+          <h3><i class="fa-solid fa-person-walking-with-cane"></i> Walking Stick for the Blind</h3>
+          <p>Assistive solution with obstacle detection and feedback; UX tested for usability.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Sensors</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="#" target="_blank"><i class="fa-brands fa-github"></i>&nbsp; Code</a>
+          </div>
+        </article>
+        <article class="card" data-tags="networking backend">
+          <h3><i class="fa-solid fa-network-wired"></i> Network Automation</h3>
+          <p>Automated MikroTik tasks to streamline provisioning, monitoring, and config backup.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Automation</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="#" target="_blank"><i class="fa-brands fa-github"></i>&nbsp; Code</a>
+          </div>
+        </article>
+        <article class="card" data-tags="frontend">
+          <h3><i class="fa-solid fa-globe"></i> Portfolio Website</h3>
+          <p>Modern, animated, and accessible personal site running on GitHub Pages.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://spvngcobo.github.io" target="_blank"><i class="fa-solid fa-up-right-from-square"></i>&nbsp; Live</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>  <!-- Skills -->  <section id="skills" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-sub">Practical tools & technologies used in coursework, internships, and projects.</p>
+      <div class="skills">
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">Python</span>
+        <span class="skill">Java</span>
+        <span class="skill">C++</span>
+        <span class="skill">Linux</span>
+        <span class="skill">Windows</span>
+        <span class="skill">Cisco Packet Tracer</span>
+        <span class="skill">Winbox</span>
+        <span class="skill">PuTTY</span>
+        <span class="skill">Cybersecurity Fundamentals</span>
+      </div>
+    </div>
+  </section>  <!-- Certificates -->  <section id="certs" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Certificates & Letters</h2>
+      <div class="grid certs">
+        <div class="cert">
+          <h3>FET Certificate: IT Technical Support</h3>
+          <div class="issuer">MICT SETA • NQF Level 4 • Issued 13 Nov 2024</div>
+          <p>Qualification ID: 78964. Demonstrates competence in technical support and troubleshooting.</p>
         </div>
-    </header>
+        <div class="cert">
+          <h3>Completion Letter — National Diploma: Engineering: Computer Systems</h3>
+          <div class="issuer">Tshwane University of Technology • 05 Jun 2025</div>
+          <p>Confirms all prescribed requirements met; effective date of award 01 Mar 2025.</p>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Timeline -->  <section id="timeline" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Experience & Education Timeline</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <h4>IT/Network Intern — Adnexus Celerity Networks</h4>
+          <div class="meta">Aug 2024 – Jan 2025</div>
+          <p>Configured MikroTik routers & ONTs; troubleshooting; contributed to network automation.</p>
+        </div>
+        <div class="t-item">
+          <h4>Technical Support Learnership — Nsingweni Consultants</h4>
+          <div class="meta">Jun 2023 – May 2024</div>
+          <p>Delivered desktop support, resolved incidents, and completed NQF Level 4 assessments.</p>
+        </div>
+        <div class="t-item">
+          <h4>National Diploma: Engineering: Computer Systems — TUT</h4>
+          <div class="meta">Studies 2019–2024 • Award effective 01 Mar 2025</div>
+          <p>Core modules include Digital Systems, Electronics, Networks, Programming, Operating Systems, Design Project, WIL.</p>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Testimonials -->  <section id="testimonials" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Testimonials</h2>
+      <div class="carousel" aria-roledescription="carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="quote">
+            <p>“Snethemba quickly became the go-to person for troubleshooting and showed strong initiative during our network automation pilot.”</p>
+            <strong>— Internship Mentor</strong>
+          </div>
+          <div class="quote">
+            <p>“Reliable, curious, and great at explaining technical concepts to peers.”</p>
+            <strong>— Learnership Supervisor</strong>
+          </div>
+          <div class="quote">
+            <p>“Delivers clean, responsive front-ends and takes feedback well.”</p>
+            <strong>— Project Collaborator</strong>
+          </div>
+        </div>
+        <div class="dots" id="carouselDots" aria-label="carousel pagination"></div>
+      </div>
+    </div>
+  </section>  <!-- Contact -->  <section id="contact" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Let’s talk about opportunities, collaborations, or ideas.</p>
+      <form action="https://formspree.io/f/your-id" method="POST">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+        <button class="btn btn-primary" type="submit"><i class="fa-regular fa-paper-plane"></i>&nbsp; Send</button>
+      </form>
+      <p style="margin-top:1rem">Or email directly: <a href="mailto:s.p.ngcobo@outlook.com">s.p.ngcobo@outlook.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/spngcobo" target="_blank" rel="noopener">linkedin.com/in/spngcobo</a> • GitHub: <a href="https://github.com/spvngcobo" target="_blank" rel="noopener">github.com/spvngcobo</a></p>
+    </div>
+  </section>  <!-- Floating contact button --><a class="btn btn-primary float-contact" href="#contact" aria-label="contact shortcut"><i class="fa-regular fa-envelope"></i></a>
 
-    <nav>
-        <ul>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <footer class="reveal" style="text-align:center; padding: 2rem 1rem;">
+    © <span id="year"></span> Snethemba Promise Ngcobo • Built with HTML, CSS & JS • <a href="#home" style="text-decoration:none; font-weight:700; color:var(--primary)">Back to top ↑</a>
+  </footer>  <script>
+    // ===== Theme (persist) =====
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'dark') root.classList.add('dark');
+    themeToggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
 
-    <main>
-        <section id="projects" class="content-section">
-            <h2>Selected Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Network Automation Tool (Professional Experience)</h3>
-                    <p>Developed Python scripts to automate MikroTik router configurations and monitoring during my internship at Adnexus Celerity Networks, improving operational efficiency and reducing human error.</p>
-                    <div class="technologies">
-                        <span>Python</span><span>MikroTik API</span><span>PuTTY</span><span>Networking</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>IoT Smart Walking Stick</h3>
-                    <p>A unique IoT device from concept to functional prototype. Demonstrates hardware/software integration and a passion for solving real-world problems through my company, Zaziza Tech.</p>
-                    <div class="technologies">
-                        <span>Arduino (C++)</span><span>IoT</span><span>Sensors</span><span>Embedded Systems</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>Full-Stack E-Commerce Platform</h3>
-                    <p>Designed and built a responsive e-commerce website for Zaziza Tech, featuring a secure backend and a modern, user-friendly interface to drive online sales.</p>
-                    <div class="technologies">
-                        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+    // ===== Year =====
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-        <section id="experience" class="content-section">
-            <h2>Professional Experience</h2>
-            <div class="experience-item">
-                <h3>Adnexus Celerity Networks – Intern</h3>
-                <p class="date">Aug 2024 – Jan 2025</p>
-                <ul>
-                    <li>Installed, configured, and managed MikroTik routers and network devices.</li>
-                    <li>Developed automation scripts and provided customer technical support.</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <h3>Nsingweni Consultants – Technical Support Learnership</h3>
-                <p class="date">Jun 2023 – May 2024</p>
-                <ul>
-                    <li>Provided comprehensive technical support and software assistance to users.</li>
-                    <li>Documented issues and resolutions, ensuring effective knowledge transfer.</li>
-                </ul>
-            </div>
-        </section>
+    // ===== Typing effect =====
+    const roles = ['Full‑Stack Developer', 'Computer Systems Engineer', 'Innovator', 'Problem Solver'];
+    let i = 0, j = 0, del = false; const target = document.getElementById('typing');
+    (function type(){
+      const cur = roles[i];
+      target.textContent = del ? cur.slice(0, j--) : cur.slice(0, j++);
+      if(!del && j === cur.length + 1){ del = true; setTimeout(type, 1200); return; }
+      if(del && j === -1){ del = false; i = (i+1) % roles.length; j = 0; }
+      setTimeout(type, del ? 50 : 110);
+    })();
 
-        <section id="education" class="content-section">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>National Diploma: Computer Systems Engineering</h3>
-                <p class="date">Tshwane University of Technology | 2019 – 2022</p>
-                <ul>
-                    <li>Completed all theoretical modules and Work Integrated Learning (WIL) 1.</li>
-                    <li>Achieved distinctions in <strong>Network Systems II</strong> and <strong>Computer Skills I</strong>.</li>
-                    <li>Final WIL 2 pending as the course is being phased out.</li>
-                </ul>
-            </div>
-        </section>
+    // ===== Particles background =====
+    const c = document.getElementById('particles');
+    const ctx = c.getContext('2d');
+    let w, h; const P = []; const COUNT = 60;
+    function resize(){ w = c.width = window.innerWidth; h = c.height = document.querySelector('.hero').offsetHeight; }
+    window.addEventListener('resize', resize); resize();
+    for(let i=0;i<COUNT;i++){ P.push({x:Math.random()*w, y:Math.random()*h, vx:(Math.random()-.5)*0.6, vy:(Math.random()-.5)*0.6}); }
+    (function draw(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1; ctx.fillStyle='rgba(0,0,0,.35)'; ctx.beginPath(); ctx.arc(p.x,p.y,1.5,0,Math.PI*2); ctx.fill(); });
+      for(let i=0;i<P.length;i++){ for(let j=i+1;j<P.length;j++){ const a=P[i], b=P[j]; const d=Math.hypot(a.x-b.x,a.y-b.y); if(d<110){ ctx.strokeStyle='rgba(0,0,0,'+(0.15-(d/110*0.15))+')'; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }}}
+      requestAnimationFrame(draw);
+    })();
 
-        <section id="about" class="content-section">
-            <h2>About Me</h2>
-            <div class="about-container">
-                <img src="snethemba_profile.jpg" alt="Snethemba Ngcobo Headshot">
-                <div class="about-text">
-                    <p>Hello, I'm Snethemba Ngcobo. I am a Computer Systems Engineer and tech founder seeking to apply my skills in a full-time role focused on <strong>software development, network automation, or cybersecurity</strong>.</p>
-                    <p>My journey into technology was driven by a desire to build things that help people, which led me to found <strong>Zaziza Tech</strong>. Through my company and my professional internships, I have honed my ability to take a project from concept to completion. I thrive on challenges and am passionate about using technology to create value.</p>
-                </div>
-            </div>
-        </section>
+    // ===== Reveal on scroll =====
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-        <section id="contact" class="content-section">
-            <h2>Contact</h2>
-            <p class="contact-intro">I'm ready to contribute to a great team. Let's connect.</p>
-            <div class="contact-links">
-                <p><strong>Email:</strong> <a href="mailto:s.p.ngcobo@outlook.com">s.p.ngcobo@outlook.com</a></p>
-                <p><strong>Phone:</strong> <a href="tel:0820569497">082 056 9497</a></p>
-                <p><strong>LinkedIn:</strong> <a href="https://za.linkedin.com/in/spngcobo" target="_blank">linkedin.com/in/spngcobo</a></p>
-                <p><strong>GitHub:</strong> <a href="https://github.com/SPVNgcobo" target="_blank">github.com/SPVNgcobo</a></p>
-            </div>
-        </section>
-    </main>
+    // ===== Filters =====
+    const chips = document.querySelectorAll('.chip');
+    const grid = document.getElementById('projectGrid');
+    chips.forEach(ch => ch.addEventListener('click', ()=>{
+      chips.forEach(c=>c.classList.remove('active')); ch.classList.add('active');
+      const f = ch.dataset.filter;
+      grid.querySelectorAll('.card').forEach(card => {
+        const show = f === 'all' || card.dataset.tags.includes(f);
+        card.style.display = show ? 'flex' : 'none';
+      });
+    }));
 
-    <footer>
-        <p>&copy; 2025 Snethemba Ngcobo. Built in Richards Bay, South Africa.</p>
-    </footer>
+    // ===== Testimonials carousel =====
+    const track = document.getElementById('carouselTrack');
+    const dotsWrap = document.getElementById('carouselDots');
+    const slides = Array.from(track.children);
+    slides.forEach((_,idx)=>{
+      const d=document.createElement('div'); d.className='dot'+(idx===0?' active':''); d.dataset.index=idx; dotsWrap.appendChild(d);
+    });
+    let idx=0; function go(n){ idx=n; track.style.transform = `translateX(-${100*n}%)`; dotsWrap.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===n)); }
+    setInterval(()=>go((idx+1)%slides.length), 4000);
+    dotsWrap.addEventListener('click', e=>{ if(e.target.classList.contains('dot')) go(+e.target.dataset.index); });
 
-    <script src="script.js"></script>
-</body>
+    // ===== Counters when visible =====
+    const nums = document.querySelectorAll('.num');
+    const counterIO = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ const el = e.target; const end = +el.dataset.count; let cur = 0; const step = Math.max(1, Math.floor(end/100));
+          const t = setInterval(()=>{ cur += step; if(cur>=end){ cur=end; clearInterval(t); } el.textContent = cur; }, 18);
+          counterIO.unobserve(el);
+        }
+      });
+    }, {threshold: .5});
+    nums.forEach(n=>counterIO.observe(n));
+  </script>  <!--
+    OPTIONAL PWA FILES (create these as separate files in your repo root):
+
+    1) manifest.webmanifest
+    {
+      "name": "Snethemba Ngcobo Portfolio",
+      "short_name": "spngcobo",
+      "start_url": "/",
+      "display": "standalone",
+      "background_color": "#0f1115",
+      "theme_color": "#00897b",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }, { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }]
+    }
+
+    2) sw.js (basic offline cache)
+    const CACHE = 'spngcobo-v1';
+    const ASSETS = ['/', '/index.html'];
+    self.addEventListener('install', e=>{ e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))); });
+    self.addEventListener('fetch', e=>{ e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))); });
+
+    Then link in <head>:
+      <link rel="manifest" href="/manifest.webmanifest" />
+    And register the service worker in a script tag:
+      if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js'); }
+  --></body>
 </html>
